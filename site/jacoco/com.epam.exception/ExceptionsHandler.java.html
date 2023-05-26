@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExceptionsHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Project</a> &gt; <a href="index.source.html" class="el_package">com.epam.exception</a> &gt; <span class="el_source">ExceptionsHandler.java</span></div><h1>ExceptionsHandler.java</h1><pre class="source lang-java linenums">package com.epam.exception;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+
+@RestControllerAdvice
+<span class="fc" id="L18">public class ExceptionsHandler {</span>
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ExceptionObject handleMethodArgumentNotValidException(MethodArgumentNotValidException e,WebRequest w)
+	{
+<span class="nc" id="L23">		List&lt;String&gt; s=new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L24">		e.getAllErrors().forEach(e1-&gt;s.add(e1.getDefaultMessage()));</span>
+<span class="nc" id="L25">		return new ExceptionObject(new Date().toString(),HttpStatus.BAD_REQUEST.toString(),s.toString(),w.getDescription(false));	</span>
+	}
+	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ExceptionObject handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e,WebRequest w)
+	{
+<span class="nc" id="L31">		return new ExceptionObject(new Date().toString(),HttpStatus.BAD_REQUEST.toString(),e.getMessage(),w.getDescription(false));</span>
+	}
+	@ExceptionHandler(AssociateException.class) 
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public ExceptionObject handleBatchException(AssociateException e,WebRequest w)
+	{
+<span class="nc" id="L37">		return new ExceptionObject(new Date().toString(),HttpStatus.NOT_FOUND.toString(),e.getMessage(),w.getDescription(false));</span>
+	}
+	@ExceptionHandler(SQLException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public ExceptionObject handleSQLException(SQLException e,WebRequest w)
+	{
+<span class="nc" id="L43">		return new ExceptionObject(new Date().toString(),HttpStatus.INTERNAL_SERVER_ERROR.toString(),e.getMessage(),w.getDescription(false));</span>
+	}
+	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	public ExceptionObject handleDataIntegrityViolationException(DataIntegrityViolationException e,WebRequest w)
+	{
+<span class="nc" id="L50">		return new ExceptionObject(new Date().toString(),HttpStatus.INTERNAL_SERVER_ERROR.toString(),e.getMessage(),w.getDescription(false));</span>
+	}
+	
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

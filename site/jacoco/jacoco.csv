@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Project,com.epam.exception,ExceptionObject,27,0,0,0,5,0,5,0,5,0
+Project,com.epam.exception,AssociateException,0,4,0,0,0,2,0,1,0,1
+Project,com.epam.exception,ExceptionsHandler,90,3,0,0,7,1,6,1,6,1
+Project,com.epam.service,AssociateServiceImpl,0,95,0,0,0,14,0,8,0,8
+Project,com.epam.entity,Associate,0,52,0,0,0,22,0,15,0,15
+Project,com.epam.entity,Batch,15,43,0,0,4,17,3,11,3,11
+Project,com.epam.restcontroller,AssociateRestController,0,35,0,0,0,6,0,5,0,5
+Project,com.epam.dto,BatchDto,4,19,0,0,0,2,1,5,1,5
+Project,com.epam.dto,AssociateDto,147,151,38,18,0,9,28,19,2,17
+Project,com.epam,ProjectApplication,5,7,0,0,2,2,1,2,1,2
