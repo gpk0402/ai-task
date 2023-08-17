@@ -16,7 +16,7 @@ pipeline {
         }
     stage('SonarQube Analysis') {
             steps {
-                bat "mvn sonar:sonar -Dsonar.projectKey=jenkins-task -Dsonar.projectName='jenkins-task' -Dsonar.host.url=http://localhost:9000 -Dsonar.login=%SONAR_TOKEN% -Dsonar.java.coveragePlugin=jacoco"
+                bat "mvn sonar:sonar -Dsonar.projectKey=jenkins-pipeline -Dsonar.projectName='jenkins-pipeline' -Dsonar.host.url=http://localhost:9000 -Dsonar.login=%SONAR_TOKEN% -Dsonar.java.coveragePlugin=jacoco"
             }
             post{
             success{
