@@ -96,6 +96,7 @@ class AssociateRestControllerTest {
 		Mockito.when(associateService.getAllAssociatesByGender("Male")).thenReturn(List.of(associateDto));
 		mockMvc.perform(get("/associates/{gender}","Male")).andExpect(status().isOk()).andReturn();
 	}
+	//
 	
 	
 	
