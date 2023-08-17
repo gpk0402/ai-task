@@ -27,7 +27,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest(AssociateRestController.class)
-public class AssociateRestControllerTest {
+class AssociateRestControllerTest {
 	@MockBean
 	AssociateService associateService;
 
@@ -68,7 +68,7 @@ public class AssociateRestControllerTest {
 	@Test
 	void testCreateAsscociate() throws JsonProcessingException, Exception {
 		Mockito.when(associateService.createAssociate(associateDto)).thenReturn(associateDto);
-		mockMvc.perform(post("/associates").contentType(MediaType.APPLICATION_JSON)
+		mockMvc.perform(post("/jenkins-demo/associates").contentType(MediaType.APPLICATION_JSON)
 				.content(new ObjectMapper().writeValueAsString(associateDto))).andExpect(status().isCreated()).andReturn();
 	}
 	
@@ -76,25 +76,25 @@ public class AssociateRestControllerTest {
 	@Test
 	void testCreateAsscociateThrowsHttpMessageNotReadable() throws JsonProcessingException, Exception {
 		Mockito.when(associateService.createAssociate(associateDto)).thenReturn(associateDto);
-		mockMvc.perform(post("/associates").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString("{name:"))).andExpect(status().isBadRequest()).andReturn();
+		mockMvc.perform(post("/jenkins-demo/associates").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString("{name:"))).andExpect(status().isBadRequest()).andReturn();
 	}
 	
 	@Test
 	void testDeleteAsscoiate() throws JsonProcessingException, Exception {
 		Mockito.doNothing().when(associateService).deleteAssociate(1);
-		mockMvc.perform(delete("/associates/{id}",1)).andExpect(status().isNoContent()).andReturn();
+		mockMvc.perform(delete("/jenkins-demo/associates/{id}",1)).andExpect(status().isNoContent()).andReturn();
 	}
 	
 	@Test
 	void testUpdateAsscoiate() throws JsonProcessingException, Exception {
 		Mockito.when(associateService.updateAssociate(associateDto)).thenReturn(associateDto);
-		mockMvc.perform(put("/associates").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(associateDto))).andExpect(status().isOk()).andReturn();
+		mockMvc.perform(put("/jenkins-demo/associates").contentType(MediaType.APPLICATION_JSON).content(new ObjectMapper().writeValueAsString(associateDto))).andExpect(status().isOk()).andReturn();
 	}
 	
 	@Test
 	void testGetAssociatesByGender() throws JsonProcessingException, Exception {
 		Mockito.when(associateService.getAllAssociatesByGender("Male")).thenReturn(List.of(associateDto));
-		mockMvc.perform(get("/associates/{gender}","Male")).andExpect(status().isOk()).andReturn();
+		mockMvc.perform(get("/jenkins-demo/associates/{gender}","Male")).andExpect(status().isOk()).andReturn();
 	}
 	
 	
