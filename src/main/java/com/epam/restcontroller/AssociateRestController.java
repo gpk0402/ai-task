@@ -22,7 +22,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("associates")
+@RequestMapping("/jenkins-demo/associates")
 @Slf4j
 public class AssociateRestController {
 	@Autowired
