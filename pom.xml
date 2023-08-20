@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Project</name>
-	<description>Java Mini Project for GOLD Certificate</description>
+	<description>Java Mini Project for AI Task</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
